@@ -50,9 +50,12 @@ nextBtn.addEventListener('click', nextSlide);
 prevBtn.addEventListener('click', prevSlide);
 
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+  const nextKeys = ['ArrowRight', ' ', 'Enter', 'PageDown', 'n', 'N'];
+  const prevKeys = ['ArrowLeft', 'PageUp', 'p', 'P', 'Backspace'];
+
+  if (nextKeys.includes(e.key)) {
     nextSlide();
-  } else if (e.key === 'ArrowLeft') {
+  } else if (prevKeys.includes(e.key)) {
     prevSlide();
   }
 });
