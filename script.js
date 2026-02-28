@@ -49,16 +49,23 @@ function prevSlide() {
 nextBtn.addEventListener('click', nextSlide);
 prevBtn.addEventListener('click', prevSlide);
 
-document.addEventListener('keydown', (e) => {
-  const nextKeys = ['ArrowRight', ' ', 'Enter', 'PageDown', 'n', 'N'];
-  const prevKeys = ['ArrowLeft', 'PageUp', 'p', 'P', 'Backspace'];
+// Optimized for Targus and common presenters
+window.addEventListener('keydown', (e) => {
+  // Debug log to help identify the key sent by the Targus clicker
+  console.log('Key pressed:', e.key, 'Code:', e.code);
 
-  if (nextKeys.includes(e.key)) {
+  const nextKeys = ['ArrowRight', 'ArrowDown', ' ', 'Enter', 'PageDown', 'Next', 'n', 'N'];
+  const prevKeys = ['ArrowLeft', 'ArrowUp', 'PageUp', 'Previous', 'p', 'P', 'Backspace'];
+
+  if (nextKeys.includes(e.key) || nextKeys.includes(e.code)) {
     nextSlide();
-  } else if (prevKeys.includes(e.key)) {
+  } else if (prevKeys.includes(e.key) || prevKeys.includes(e.code)) {
     prevSlide();
   }
 });
+
+// Ensure the window has focus to capture key events from the start
+window.focus();
 
 // Initialize
 updatePresentation();
